@@ -1,0 +1,17 @@
+# Qt Creator
+*.pro.user
+*.qmake.stash
+*.creator.user
+
+# Build files
+build-*/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+
+# OS files
+.DS_Store
+Thumbs.db
