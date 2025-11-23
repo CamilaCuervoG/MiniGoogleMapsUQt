@@ -10,10 +10,18 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mapa.cpp
 
 HEADERS += \
-    mainwindow.h
+    ArbolBinario.h \
+    Grafo.h \
+    Historial.h \
+    ListaCircular.h \
+    ListaDoble.h \
+    ListaSimple.h \
+    mainwindow.h \
+    mapa.h
 
 FORMS += \
     mainwindow.ui

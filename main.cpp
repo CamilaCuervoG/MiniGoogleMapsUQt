@@ -1,11 +1,11 @@
-#include "mainwindow.h"
-
 #include <QApplication>
+#include "MainWindow.h"
+#include "mapa.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+    QApplication app(argc, argv);
+    MainWindow window;
+    window.show();   // Muestra la ventana principal
+    return app.exec();  // Ejecuta el bucle de eventos de Qt
 }
