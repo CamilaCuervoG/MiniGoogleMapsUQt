@@ -1,35 +1,22 @@
-#pragma once
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
 #include <QMainWindow>
-#include <QPushButton>
-#include <QComboBox>
-#include <QTextEdit>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include "mapa.h"
+
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow; }
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+    Q_OBJECT    // <--- ESTE ES EL QUE FALTA
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
-    Mapa* mapa;
-
-    // Widgets
-    QComboBox* comboOrigen;
-    QComboBox* comboDestino;
-    QPushButton* btnCalcularRuta;
-    QPushButton* btnMostrarHistorial;
-    QTextEdit* textOutput;
-
-    void setupUI();
-    void conectarSenales();
-
-private slots:
-    void calcularRuta();
-    void mostrarHistorial();
+    Ui::MainWindow *ui;
 };
+
+#endif // MAINWINDOW_H
