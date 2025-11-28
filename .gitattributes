@@ -1,0 +1,6 @@
+Makefile linguist-detectable=false
+*.sh linguist-detectable=false
+
+*.cpp linguist-language=C++
+*.hpp linguist-language=C++
+*.h   linguist-language=C++
