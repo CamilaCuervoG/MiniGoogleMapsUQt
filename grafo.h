@@ -69,30 +69,31 @@ public:
         return numNodos;
     }
 
-    // DFS recursivo
-    void dfsUtil(int nodo, std::vector<bool>& visitado) const {
+    // DFS recursivo que escribe en un stream
+    void dfsUtil(int nodo, std::vector<bool>& visitado, std::ostream& os) const {
         visitado[nodo] = true;
-        std::cout << getNombre(nodo) << " ";
+        os << getNombre(nodo) << " -> ";
 
         for (const auto& vecino : adyacencia[nodo]) {
             if (!visitado[vecino.first]) {
-                dfsUtil(vecino.first, visitado);
+                dfsUtil(vecino.first, visitado, os);
             }
         }
     }
 
-    void DFS(int inicio) const {
+    // DFS completo que escribe en un stream
+    void DFS(int inicio, std::ostream& os) const {
         if (inicio < 0 || inicio >= numNodos) {
-            std::cout << "Nodo inválido.\n";
+            os << "Nodo inválido.\n";
             return;
         }
 
         std::vector<bool> visitado(numNodos, false);
-
-        std::cout << "Recorrido DFS desde " << getNombre(inicio) << ": ";
-        dfsUtil(inicio, visitado);
-        std::cout << "\n";
+        os << "Recorrido DFS desde " << getNombre(inicio) << ": ";
+        dfsUtil(inicio, visitado, os);
+        os << "\n";
     }
+
 
     // DIJKSTRA
     std::vector<int> dijkstra(int origen, int destino) const {
@@ -144,17 +145,17 @@ public:
         return ruta;
     }
 
-    void mostrarRuta(const std::vector<int>& ruta) const {
+    void mostrarRuta(const std::vector<int>& ruta, std::ostream& os) const {
         if (ruta.empty()) {
-            std::cout << "No existe una ruta.\n";
+            os << "No existe una ruta.\n";
             return;
         }
 
-        std::cout << "Ruta encontrada: ";
+        os << "Ruta encontrada: ";
         for (size_t i = 0; i < ruta.size(); i++) {
-            std::cout << getNombre(ruta[i]);
-            if (i + 1 < ruta.size()) std::cout << " -> ";
+            os << getNombre(ruta[i]);
+            if (i + 1 < ruta.size()) os << " -> ";
         }
-        std::cout << '\n';
+        os << '\n';
     }
 };

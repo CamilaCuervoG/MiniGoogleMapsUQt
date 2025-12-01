@@ -6,23 +6,86 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>488</width>
-    <height>241</height>
+    <width>481</width>
+    <height>250</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="btnDFS">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>20</y>
+      <width>211</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Recorrido Mapa</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnDijkstra">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>211</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ruta más corta</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboInicio">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>211</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textResultado">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>441</width>
+      <height>131</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboDestino">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>50</y>
+      <width>211</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>488</width>
+     <width>481</width>
      <height>17</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuMapa">
+    <property name="title">
+     <string>Mapa</string>
+    </property>
+   </widget>
+   <addaction name="menuMapa"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

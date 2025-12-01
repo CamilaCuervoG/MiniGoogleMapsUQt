@@ -1,10 +1,22 @@
-#include "mapa.h"
+#include "Mapa.h"
 
-// La mayoría de la lógica ya está implementada en Mapa.h
-// Dado que usamos objetos que manejan su propia memoria (Grafo, Árbol, Listas, Historial),
-// no es estrictamente necesario un destructor adicional.
-// Si en el futuro agregas punteros manuales, aquí podrías liberar memoria.
-
+// Destructor
 Mapa::~Mapa() {
-    // Destructor vacío, no requiere limpieza manual
+    // No se requiere liberar memoria manualmente
+}
+
+// ------------------------------------
+//  ZONAS → BLOQUES
+// ------------------------------------
+
+void Mapa::agregarZona(const std::string& zona, const std::string& bloque) {
+    zonasBloques[zona] = bloque;
+}
+
+std::string Mapa::buscarZona(const std::string& zona) const {
+    auto it = zonasBloques.find(zona);
+    if (it != zonasBloques.end()) {
+        return it->second;
+    }
+    return "Zona no encontrada";
 }
