@@ -7,7 +7,7 @@
 
 class Mapa {
 private:
-    Grafo grafo;                          // Grafo del campus
+    Grafo grafo; // Grafo del campus
     std::map<std::string, std::string> zonasBloques;
 public:
     // Constructor
@@ -21,7 +21,6 @@ public:
 
     void setNombreNodo(int nodo, const std::string& nombre) {
         grafo.setNombre(nodo, nombre);
-        //arbolLugares.insertar(nombre); // También lo guardamos en árbol
     }
 
     void agregarConexion(int origen, int destino, int distancia) {
@@ -44,7 +43,6 @@ public:
     void recorrerDFS(int inicio, std::ostream& os) const {
         grafo.DFS(inicio, os);
     }
-
 
     std::string getNombreNodo(int nodo) const {
         return grafo.getNombre(nodo);

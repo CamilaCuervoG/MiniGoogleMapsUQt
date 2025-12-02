@@ -10,15 +10,13 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -27,49 +25,120 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QPushButton *btnDFS;
-    QPushButton *btnDijkstra;
-    QComboBox *comboInicio;
-    QTextEdit *textResultado;
-    QComboBox *comboDestino;
-    QMenuBar *menubar;
-    QMenu *menuMapa;
+    QGroupBox *groupBox;
+    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout;
+    QLabel *label;
+    QLabel *saludoMenuPrincipal;
+    QLabel *label_2;
+    QPushButton *btnRutaAB;
+    QPushButton *btnBuscar;
+    QPushButton *btnLugarBloque;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(481, 250);
+        MainWindow->resize(1280, 720);
+        MainWindow->setMinimumSize(QSize(1280, 720));
+        MainWindow->setMaximumSize(QSize(1280, 720));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        btnDFS = new QPushButton(centralwidget);
-        btnDFS->setObjectName("btnDFS");
-        btnDFS->setGeometry(QRect(250, 20, 211, 18));
-        btnDijkstra = new QPushButton(centralwidget);
-        btnDijkstra->setObjectName("btnDijkstra");
-        btnDijkstra->setGeometry(QRect(20, 20, 211, 18));
-        comboInicio = new QComboBox(centralwidget);
-        comboInicio->setObjectName("comboInicio");
-        comboInicio->setGeometry(QRect(20, 50, 211, 21));
-        textResultado = new QTextEdit(centralwidget);
-        textResultado->setObjectName("textResultado");
-        textResultado->setGeometry(QRect(20, 80, 441, 131));
-        comboDestino = new QComboBox(centralwidget);
-        comboDestino->setObjectName("comboDestino");
-        comboDestino->setGeometry(QRect(250, 50, 211, 21));
+        centralwidget->setAutoFillBackground(false);
+        centralwidget->setStyleSheet(QString::fromUtf8("#centralwidget {\n"
+"    border-image: url(\":/img/img/MenuPrincipal.png\") 0 0 0 0 stretch stretch;\n"
+"}\n"
+""));
+        groupBox = new QGroupBox(centralwidget);
+        groupBox->setObjectName("groupBox");
+        groupBox->setEnabled(true);
+        groupBox->setGeometry(QRect(430, 120, 421, 451));
+        groupBox->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
+"   background-color: rgba(255,255,255,0.7);\n"
+"    box-shadow: 0px 0px 15px rgba(0,0,0,50); /* Qt Designer ignora box-shadow */\n"
+"    border: none;             \n"
+"    border-radius: 15px;\n"
+"    padding: 15px;\n"
+"    /* sombra simulada */\n"
+"    box-shadow: 0px 0px 15px rgba(0,0,0,50); /* Qt Designer ignora box-shadow */                   \n"
+"	 margin-top: 0px;\n"
+"}"));
+        groupBox->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        layoutWidget = new QWidget(groupBox);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(20, 20, 381, 411));
+        verticalLayout = new QVBoxLayout(layoutWidget);
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(layoutWidget);
+        label->setObjectName("label");
+        label->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    font: 24px 'Courier New';             /* fuente moderna */\n"
+"    border-radius: 15px;                  /* bordes redondeados */\n"
+"    padding: 20px;\n"
+"}"));
+        label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label->setWordWrap(true);
+
+        verticalLayout->addWidget(label);
+
+        saludoMenuPrincipal = new QLabel(layoutWidget);
+        saludoMenuPrincipal->setObjectName("saludoMenuPrincipal");
+        saludoMenuPrincipal->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: #000000; \n"
+"    font: 10px 'Courier New';\n"
+"}\n"
+""));
+        saludoMenuPrincipal->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        saludoMenuPrincipal->setWordWrap(true);
+
+        verticalLayout->addWidget(saludoMenuPrincipal);
+
+        label_2 = new QLabel(layoutWidget);
+        label_2->setObjectName("label_2");
+        label_2->setStyleSheet(QString::fromUtf8("font: 14px 'Courier New'; "));
+        label_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(label_2);
+
+        btnRutaAB = new QPushButton(layoutWidget);
+        btnRutaAB->setObjectName("btnRutaAB");
+        btnRutaAB->setStyleSheet(QString::fromUtf8("font: 16px 'Courier New';\n"
+"color: white; /* texto blanco */\n"
+"background-color: #003366; /* azul IUSH */\n"
+"border-radius: 15px; /* bordes redondeados */\n"
+"padding: 10px 20px;\n"
+"border: none;"));
+
+        verticalLayout->addWidget(btnRutaAB);
+
+        btnBuscar = new QPushButton(layoutWidget);
+        btnBuscar->setObjectName("btnBuscar");
+        btnBuscar->setStyleSheet(QString::fromUtf8("font: 16px 'Courier New';\n"
+"color: white;\n"
+"background-color: #7B1FA2;   /* morado base diferente */\n"
+"border-radius: 15px;\n"
+"padding: 10px 20px;\n"
+"border: none;"));
+
+        verticalLayout->addWidget(btnBuscar);
+
+        btnLugarBloque = new QPushButton(layoutWidget);
+        btnLugarBloque->setObjectName("btnLugarBloque");
+        btnLugarBloque->setStyleSheet(QString::fromUtf8("font: 16px 'Courier New';\n"
+"color: white;\n"
+"background-color: #4B0082;   /* morado oscuro */\n"
+"border-radius: 15px;\n"
+"padding: 10px 20px;\n"
+"border: none;"));
+
+        verticalLayout->addWidget(btnLugarBloque);
+
         MainWindow->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(MainWindow);
-        menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 481, 17));
-        menuMapa = new QMenu(menubar);
-        menuMapa->setObjectName("menuMapa");
-        MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
-
-        menubar->addAction(menuMapa->menuAction());
 
         retranslateUi(MainWindow);
 
@@ -79,9 +148,13 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        btnDFS->setText(QCoreApplication::translate("MainWindow", "Recorrido Mapa", nullptr));
-        btnDijkstra->setText(QCoreApplication::translate("MainWindow", "Ruta m\303\241s corta", nullptr));
-        menuMapa->setTitle(QCoreApplication::translate("MainWindow", "Mapa", nullptr));
+        groupBox->setTitle(QString());
+        label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; font-weight:700; color:#55007f;\">Tejiendo Datos</span></p></body></html>", nullptr));
+        saludoMenuPrincipal->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">\302\241Bienvenido(a) a Tejiendo Datos! <br/></span></p><p align=\"center\"><span style=\" font-size:10pt;\">Explora y navega por el campus de manera sencilla, </span></p><p align=\"center\"><span style=\" font-size:10pt;\">encuentra tus destinos favoritos y recorre cada bloque con facilidad. <br/></span></p><p align=\"center\"><span style=\" font-size:10pt;\">\302\241Disfruta tu experiencia!</span></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:700; color:#00007f;\">Selecciona tu acci\303\263n</span></p></body></html>", nullptr));
+        btnRutaAB->setText(QCoreApplication::translate("MainWindow", "Consultar Ruta", nullptr));
+        btnBuscar->setText(QCoreApplication::translate("MainWindow", "Buscar Lugar", nullptr));
+        btnLugarBloque->setText(QCoreApplication::translate("MainWindow", "Ver Lugares Por Bloque", nullptr));
     } // retranslateUi
 
 };

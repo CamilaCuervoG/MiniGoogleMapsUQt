@@ -1,6 +1,7 @@
 #include <QApplication>
 #include "MainWindow.h"
 #include "mapa.h"
+#include "formMenuPrincipal.h"
 
 int main(int argc, char *argv[])
 {

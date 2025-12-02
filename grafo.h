@@ -89,7 +89,7 @@ public:
         }
 
         std::vector<bool> visitado(numNodos, false);
-        os << "Recorrido DFS desde " << getNombre(inicio) << ": ";
+        os << "Recorrido DFS desde " << getNombre(inicio) << ": \n\n";
         dfsUtil(inicio, visitado, os);
         os << "\n";
     }
@@ -151,7 +151,7 @@ public:
             return;
         }
 
-        os << "Ruta encontrada: ";
+        os << "Ruta encontrada: \n\n";
         for (size_t i = 0; i < ruta.size(); i++) {
             os << getNombre(ruta[i]);
             if (i + 1 < ruta.size()) os << " -> ";

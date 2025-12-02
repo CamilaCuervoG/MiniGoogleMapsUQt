@@ -1,6 +1,5 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "mapa.h"
 
 #include <QMainWindow>
 
@@ -17,12 +16,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_btnDFS_clicked();
-    void on_btnDijkstra_clicked();
+    void abrirRutaAB();
+    void abrirBuscar();
+    void abrirLugarBloque();
 
 private:
     Ui::MainWindow *ui;
-    Mapa mapa;
+
 };
 
 #endif // MAINWINDOW_H

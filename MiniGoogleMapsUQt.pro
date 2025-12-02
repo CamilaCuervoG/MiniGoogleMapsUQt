@@ -9,9 +9,12 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    buscarlugar.cpp \
+    lugarbloque.cpp \
     main.cpp \
     mainwindow.cpp \
-    mapa.cpp
+    mapa.cpp \
+    menuprincipal.cpp
 
 HEADERS += \
     ArbolBinario.h \
@@ -20,11 +23,17 @@ HEADERS += \
     ListaCircular.h \
     ListaDoble.h \
     ListaSimple.h \
+    buscarlugar.h \
+    lugarbloque.h \
     mainwindow.h \
-    mapa.h
+    mapa.h \
+    menuprincipal.h
 
 FORMS += \
-    mainwindow.ui
+    buscarlugar.ui \
+    lugarbloque.ui \
+    mainwindow.ui \
+    menuprincipal.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -34,3 +43,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     .gitattributes \
     .gitignore
+
+RESOURCES += \
+    resources.qrc \
+    resources.qrc

@@ -7,7 +7,7 @@
 // =========================================================
 class NodoArbol {
 public:
-    std::string nombre;      // Ej: "Cafetería", "Edificio A"
+    std::string nombre;
     NodoArbol* izquierda;
     NodoArbol* derecha;
 
