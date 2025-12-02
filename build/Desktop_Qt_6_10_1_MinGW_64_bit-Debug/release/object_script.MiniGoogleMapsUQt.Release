@@ -1,0 +1,11 @@
+release/buscarlugar.o
+release/lugarbloque.o
+release/main.o
+release/mainwindow.o
+release/mapa.o
+release/menuprincipal.o
+release/qrc_resources.o
+release/moc_buscarlugar.o
+release/moc_lugarbloque.o
+release/moc_mainwindow.o
+release/moc_menuprincipal.o
