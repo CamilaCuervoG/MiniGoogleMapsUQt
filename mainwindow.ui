@@ -6,23 +6,176 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>488</width>
-    <height>241</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>488</width>
-     <height>17</height>
-    </rect>
+  <widget class="QWidget" name="centralwidget">
+   <property name="autoFillBackground">
+    <bool>false</bool>
    </property>
+   <property name="styleSheet">
+    <string notr="true">#centralwidget {
+    border-image: url(&quot;:/img/img/MenuPrincipal.png&quot;) 0 0 0 0 stretch stretch;
+}
+</string>
+   </property>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>120</y>
+      <width>421</width>
+      <height>451</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+   background-color: rgba(255,255,255,0.7);
+    box-shadow: 0px 0px 15px rgba(0,0,0,50); /* Qt Designer ignora box-shadow */
+    border: none;             
+    border-radius: 15px;
+    padding: 15px;
+    /* sombra simulada */
+    box-shadow: 0px 0px 15px rgba(0,0,0,50); /* Qt Designer ignora box-shadow */                   
+	 margin-top: 0px;
+}</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>381</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    font: 24px 'Courier New';             /* fuente moderna */
+    border-radius: 15px;                  /* bordes redondeados */
+    padding: 20px;
+}</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:700; color:#55007f;&quot;&gt;Tejiendo Datos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="saludoMenuPrincipal">
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    color: #000000; 
+    font: 10px 'Courier New';
+}
+</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;¡Bienvenido(a) a Tejiendo Datos! &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Explora y navega por el campus de manera sencilla, &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;encuentra tus destinos favoritos y recorre cada bloque con facilidad. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;¡Disfruta tu experiencia!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="styleSheet">
+         <string notr="true">font: 14px 'Courier New'; </string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#00007f;&quot;&gt;Selecciona tu acción&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnRutaAB">
+        <property name="styleSheet">
+         <string notr="true">font: 16px 'Courier New';
+color: white; /* texto blanco */
+background-color: #003366; /* azul IUSH */
+border-radius: 15px; /* bordes redondeados */
+padding: 10px 20px;
+border: none;</string>
+        </property>
+        <property name="text">
+         <string>Consultar Ruta</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnBuscar">
+        <property name="styleSheet">
+         <string notr="true">font: 16px 'Courier New';
+color: white;
+background-color: #7B1FA2;   /* morado base diferente */
+border-radius: 15px;
+padding: 10px 20px;
+border: none;</string>
+        </property>
+        <property name="text">
+         <string>Buscar Lugar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnLugarBloque">
+        <property name="styleSheet">
+         <string notr="true">font: 16px 'Courier New';
+color: white;
+background-color: #4B0082;   /* morado oscuro */
+border-radius: 15px;
+padding: 10px 20px;
+border: none;</string>
+        </property>
+        <property name="text">
+         <string>Ver Lugares Por Bloque</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

@@ -1,12 +1,12 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'mainwindow.h'
+** Meta object code from reading C++ file 'menuprincipal.h'
 **
 ** Created by: The Qt Meta Object Compiler version 69 (Qt 6.10.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../mainwindow.h"
+#include "../../../menuprincipal.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -16,7 +16,7 @@
 
 #include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'mainwindow.h' doesn't include <QObject>."
+#error "The header file 'menuprincipal.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 69
 #error "This file was generated using the moc from 6.10.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -31,75 +31,75 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
-struct qt_meta_tag_ZN10MainWindowE_t {};
+struct qt_meta_tag_ZN13MenuPrincipalE_t {};
 } // unnamed namespace
 
-template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_tag_ZN10MainWindowE_t>()
+template <> constexpr inline auto MenuPrincipal::qt_create_metaobjectdata<qt_meta_tag_ZN13MenuPrincipalE_t>()
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "MainWindow",
-        "abrirRutaAB",
+        "MenuPrincipal",
+        "on_btnDFS_clicked",
         "",
-        "abrirBuscar",
-        "abrirLugarBloque"
+        "on_btnDijkstra_clicked",
+        "regresarMenuPrincipal"
     };
 
     QtMocHelpers::UintData qt_methods {
-        // Slot 'abrirRutaAB'
+        // Slot 'on_btnDFS_clicked'
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'abrirBuscar'
+        // Slot 'on_btnDijkstra_clicked'
         QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'abrirLugarBloque'
+        // Slot 'regresarMenuPrincipal'
         QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
     QtMocHelpers::UintData qt_enums {
     };
-    return QtMocHelpers::metaObjectData<MainWindow, qt_meta_tag_ZN10MainWindowE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+    return QtMocHelpers::metaObjectData<MenuPrincipal, qt_meta_tag_ZN13MenuPrincipalE_t>(QMC::MetaObjectFlag{}, qt_stringData,
             qt_methods, qt_properties, qt_enums);
 }
-Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
-    QMetaObject::SuperData::link<QMainWindow::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10MainWindowE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10MainWindowE_t>.data,
+Q_CONSTINIT const QMetaObject MenuPrincipal::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13MenuPrincipalE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13MenuPrincipalE_t>.data,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN10MainWindowE_t>.metaTypes,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13MenuPrincipalE_t>.metaTypes,
     nullptr
 } };
 
-void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void MenuPrincipal::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<MainWindow *>(_o);
+    auto *_t = static_cast<MenuPrincipal *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->abrirRutaAB(); break;
-        case 1: _t->abrirBuscar(); break;
-        case 2: _t->abrirLugarBloque(); break;
+        case 0: _t->on_btnDFS_clicked(); break;
+        case 1: _t->on_btnDijkstra_clicked(); break;
+        case 2: _t->regresarMenuPrincipal(); break;
         default: ;
         }
     }
     (void)_a;
 }
 
-const QMetaObject *MainWindow::metaObject() const
+const QMetaObject *MenuPrincipal::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *MainWindow::qt_metacast(const char *_clname)
+void *MenuPrincipal::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10MainWindowE_t>.strings))
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13MenuPrincipalE_t>.strings))
         return static_cast<void*>(this);
-    return QMainWindow::qt_metacast(_clname);
+    return QWidget::qt_metacast(_clname);
 }
 
-int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int MenuPrincipal::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QMainWindow::qt_metacall(_c, _id, _a);
+    _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {

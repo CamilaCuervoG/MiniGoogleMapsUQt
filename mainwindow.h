@@ -15,8 +15,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void abrirRutaAB();
+    void abrirBuscar();
+    void abrirLugarBloque();
+
 private:
     Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H
