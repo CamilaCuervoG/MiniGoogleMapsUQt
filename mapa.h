@@ -4,14 +4,23 @@
 #include <vector>
 #include <iostream>
 #include "Grafo.h"
+#include "Bloque.h"
+#include <QDebug>
 
 class Mapa {
 private:
     Grafo grafo; // Grafo del campus
+    std::vector<Bloque> bloques;
     std::map<std::string, std::string> zonasBloques;
 public:
-    // Constructor
-    Mapa(int numNodos) : grafo(numNodos) {}
+    Mapa(int numNodos)
+        : grafo(numNodos > 0 ? numNodos : 1)
+    {
+        qDebug() << "Mapa creado con numNodos =" << numNodos;
+        if (numNodos <= 0) {
+            qDebug() << "Advertencia: numNodos <= 0, se creó un grafo con 1 nodo.";
+        }
+    }
 
     ~Mapa();  // Declaración del destructor
 
@@ -49,10 +58,15 @@ public:
     }
 
     // -------------------------
-    // ZONAS → BLOQUES
+    // BLOQUES
     // -------------------------
 
+    void agregarBloque(const Bloque& b) { bloques.push_back(b); }
+    const std::vector<Bloque>& getBloques() const { return bloques; }
+
+    // -------------------------
+    // ZONAS → BLOQUES
+    // -------------------------
     void agregarZona(const std::string& zona, const std::string& bloque);
     std::string buscarZona(const std::string& zona) const;
-
 };

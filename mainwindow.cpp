@@ -8,10 +8,12 @@
 #include "menuprincipal.h"
 #include "buscarlugar.h"
 #include "lugarbloque.h"
+#include "Mapa.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
     ui(new Ui::MainWindow)
+    , mapa(12)
 {
     ui->setupUi(this);
 
@@ -27,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle("Menu Principal");
 
     connect(ui->btnRutaAB, &QPushButton::clicked, this, &MainWindow::abrirRutaAB);
-    connect(ui->btnBuscar, &QPushButton::clicked, this, &MainWindow::abrirBuscar);
+    connect(ui->btnBuscar, &QPushButton::clicked, this, &MainWindow::abrirBuscarLugar);
     connect(ui->btnLugarBloque, &QPushButton::clicked, this, &MainWindow::abrirLugarBloque);
 
     ui->btnRutaAB->setStyleSheet(
@@ -108,21 +110,6 @@ void MainWindow::abrirRutaAB() {
 
 void MainWindow::abrirLugarBloque() {
     // Crear la nueva ventana
-    BuscarLugar *buscar = new BuscarLugar(this);
-
-
-    // Mostrar la nueva ventana
-    buscar->show();
-
-    // Ocultar la ventana actual
-    this->hide();
-
-    // Opcional: cuando se cierre la nueva ventana, cerrar la app completa
-    connect(buscar, &QWidget::destroyed, this, &QWidget::close);
-}
-
-void MainWindow::abrirBuscar() {
-    // Crear la nueva ventana
     LugarBloque *lugar = new LugarBloque(this);
 
     // Mostrar la nueva ventana
@@ -133,4 +120,22 @@ void MainWindow::abrirBuscar() {
 
     // Opcional: cuando se cierre la nueva ventana, cerrar la app completa
     connect(lugar, &QWidget::destroyed, this, &QWidget::close);
+}
+
+void MainWindow::abrirBuscarLugar() {
+    BuscarLugar *buscar = new BuscarLugar();
+
+    // Ocultar la ventana principal
+    this->hide();
+
+    // Destruir BuscarLugar al cerrarse automáticamente
+    buscar->setAttribute(Qt::WA_DeleteOnClose);
+
+    // Cuando se cierre BuscarLugar, mostrar MainWindow de nuevo
+    connect(buscar, &QWidget::destroyed, this, [this]() {
+        this->show();
+    });
+
+    // Mostrar BuscarLugar
+    buscar->show();
 }
