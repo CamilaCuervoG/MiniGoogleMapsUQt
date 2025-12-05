@@ -1,5 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "Mapa.h"
 
 #include <QMainWindow>
 
@@ -17,11 +18,12 @@ public:
 
 private slots:
     void abrirRutaAB();
-    void abrirBuscar();
     void abrirLugarBloque();
+    void abrirBuscarLugar();
 
 private:
     Ui::MainWindow *ui;
+    Mapa mapa;
 
 };
 

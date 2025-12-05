@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    InfoLugarDialog.cpp \
     buscarlugar.cpp \
     lugarbloque.cpp \
     main.cpp \
@@ -17,11 +18,10 @@ SOURCES += \
     menuprincipal.cpp
 
 HEADERS += \
-    ArbolBinario.h \
+    Bloque.h \
     Grafo.h \
     Historial.h \
-    ListaCircular.h \
-    ListaDoble.h \
+    InfoLugarDialog.h \
     ListaSimple.h \
     buscarlugar.h \
     lugarbloque.h \
@@ -30,6 +30,7 @@ HEADERS += \
     menuprincipal.h
 
 FORMS += \
+    InfoLugarDialog.ui \
     buscarlugar.ui \
     lugarbloque.ui \
     mainwindow.ui \

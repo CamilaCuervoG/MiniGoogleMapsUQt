@@ -37,9 +37,10 @@ public:
     QTextEdit *textResultado;
     QHBoxLayout *horizontalLayout;
     QPushButton *btnDijkstra;
-    QPushButton *btnDFS;
+    QLabel *label_4;
     QPushButton *btnRegresar;
     QLabel *label;
+    QLabel *labelImagenBloque;
 
     void setupUi(QWidget *MenuPrincipal)
     {
@@ -96,14 +97,12 @@ public:
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         comboInicio = new QComboBox(layoutWidget);
         comboInicio->setObjectName("comboInicio");
-        comboInicio->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+        comboInicio->setStyleSheet(QString::fromUtf8(" QComboBox {\n"
 "            font: 16px 'Courier New';\n"
-"            color: white;                              /* texto blanco */\n"
-"            background-color: #032263; /*\n"
-"            qproperty-alignment: 'AlignCenter';\n"
+"            color: black;\n"
+"            background-color: #E7E7E7;\n"
 "            border-radius: 12px;\n"
-"            padding: 8px 20px 8px 12px;               /* espacio interno */\n"
-"            border: 2px solid rgba(100, 100, 150, 200); /* borde suave */\n"
+"            padding: 8px 20px 8px 12px;\n"
 "            min-width: 150px;\n"
 "        }"));
 
@@ -111,14 +110,12 @@ public:
 
         comboDestino = new QComboBox(layoutWidget);
         comboDestino->setObjectName("comboDestino");
-        comboDestino->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+        comboDestino->setStyleSheet(QString::fromUtf8(" QComboBox {\n"
 "            font: 16px 'Courier New';\n"
-"            color: white;                              /* texto blanco */\n"
-"            background-color: #032263; /*\n"
-"            qproperty-alignment: 'AlignCenter';\n"
+"            color: black;\n"
+"            background-color: #E7E7E7;\n"
 "            border-radius: 12px;\n"
-"            padding: 8px 20px 8px 12px;               /* espacio interno */\n"
-"            border: 2px solid rgba(100, 100, 150, 200); /* borde suave */\n"
+"            padding: 8px 20px 8px 12px;\n"
 "            min-width: 150px;\n"
 "        }"));
 
@@ -130,13 +127,15 @@ public:
         textResultado = new QTextEdit(layoutWidget);
         textResultado->setObjectName("textResultado");
         textResultado->setStyleSheet(QString::fromUtf8("QTextEdit {\n"
-"    font: 16px 'Courier New';\n"
-"    color: #003366;              /* texto azul IUSH */\n"
-"    background-color: rgba(255, 255, 255, 200); /* fondo semi-transparente */\n"
-"    border-radius: 15px;\n"
-"    padding: 10px;\n"
-"    border: 2px solid #7B1FA2;  /* borde morado */\n"
-"}"));
+"            font: 16px 'Courier New';\n"
+"            color: #003366;                      /* texto azul IUSH */\n"
+"            background-color: rgba(255, 255, 255, 180); /* fondo semi-transparente */\n"
+"            border-radius: 15px;\n"
+"            padding: 12px;\n"
+"            border: 2px solid #1A356A;          /* borde morado */\n"
+"            selection-background-color: rgba(155, 85, 200, 150); /* selecci\303\263n morado suave */\n"
+"            selection-color: white;\n"
+"        }"));
 
         verticalLayout->addWidget(textResultado);
 
@@ -147,7 +146,7 @@ public:
         btnDijkstra->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "            font: 16px 'Courier New';\n"
 "            color: white;\n"
-"            background-color: #9B1FA2;   /* morado base */\n"
+"            background-color: #4B0082;\n"
 "            border-radius: 15px;\n"
 "            padding: 10px 20px;\n"
 "            border: none;\n"
@@ -155,31 +154,24 @@ public:
 
         horizontalLayout->addWidget(btnDijkstra);
 
-        btnDFS = new QPushButton(layoutWidget);
-        btnDFS->setObjectName("btnDFS");
-        btnDFS->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"            font: 16px 'Courier New';\n"
-"            color: white;\n"
-"            background-color: #7B1FA2;   /* morado base */\n"
-"            border-radius: 15px;\n"
-"            padding: 10px 20px;\n"
-"            border: none;\n"
-"        }"));
-
-        horizontalLayout->addWidget(btnDFS);
-
 
         verticalLayout->addLayout(horizontalLayout);
 
+        label_4 = new QLabel(layoutWidget);
+        label_4->setObjectName("label_4");
+
+        verticalLayout->addWidget(label_4);
+
         btnRegresar = new QPushButton(layoutWidget);
         btnRegresar->setObjectName("btnRegresar");
-        btnRegresar->setStyleSheet(QString::fromUtf8("font: 12px 'Courier New';\n"
-"        color: white;\n"
-"        background-color: #003366;  \n"
-"        border-radius: 15px;\n"
-"        padding: 8px 8px;\n"
-"        border: none;\n"
-"       "));
+        btnRegresar->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"            font: 14px 'Courier New';\n"
+"            color: white;\n"
+"            background-color: #1A356A;\n"
+"            border-radius: 15px;\n"
+"            padding: 10px 10px;\n"
+"            border: none;\n"
+"        }"));
 
         verticalLayout->addWidget(btnRegresar);
 
@@ -197,10 +189,18 @@ public:
 "}"));
         label->setPixmap(QPixmap(QString::fromUtf8(":/img/img/rutaab.png")));
         label->setScaledContents(true);
+        labelImagenBloque = new QLabel(MenuPrincipal);
+        labelImagenBloque->setObjectName("labelImagenBloque");
+        labelImagenBloque->setGeometry(QRect(638, 80, 561, 561));
+        labelImagenBloque->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #D1D0D5;\n"
+"border-radius: 15px;\n"
+" "));
+        labelImagenBloque->setPixmap(QPixmap(QString::fromUtf8(":/img/img/CAMPUSCONTEXT.png")));
+        labelImagenBloque->setScaledContents(true);
         label->raise();
         groupBox->raise();
-        label_3->raise();
-        label_2->raise();
+        labelImagenBloque->raise();
 
         retranslateUi(MenuPrincipal);
 
@@ -214,9 +214,10 @@ public:
         label_2->setText(QCoreApplication::translate("MenuPrincipal", "<html><head/><body><p align=\"center\"><span style=\" font-weight:700; color:#00007f;\">Origen</span></p></body></html>", nullptr));
         label_3->setText(QCoreApplication::translate("MenuPrincipal", "<html><head/><body><p align=\"center\"><span style=\" font-weight:700; color:#00007f;\">Destino</span></p></body></html>", nullptr));
         btnDijkstra->setText(QCoreApplication::translate("MenuPrincipal", "Ruta m\303\241s corta", nullptr));
-        btnDFS->setText(QCoreApplication::translate("MenuPrincipal", "Recorrido Mapa", nullptr));
+        label_4->setText(QString());
         btnRegresar->setText(QCoreApplication::translate("MenuPrincipal", "Regresar al men\303\272", nullptr));
         label->setText(QString());
+        labelImagenBloque->setText(QString());
     } // retranslateUi
 
 };

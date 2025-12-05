@@ -28,45 +28,26 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
     move(x, y);
 
     setWindowFlags(Qt::Dialog | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-    setWindowTitle("Menu Principal");
+    setWindowTitle("Consultar ruta");
 
     connect(ui->btnRegresar, &QPushButton::clicked, this, &MenuPrincipal::regresarMenuPrincipal);
 
-    ui->btnDFS->setStyleSheet(R"(
-        QPushButton {
-            font: 16px 'Courier New';
-            color: white;
-            background-color: #7B1FA2;   /* morado base */
-            border-radius: 15px;
-            padding: 10px 20px;
-            border: none;
-        }
-
-        QPushButton:hover {
-            background-color: #9C27B0;  /* morado más claro al pasar mouse */
-        }
-
-        QPushButton:pressed {
-            background-color: #2196F3;  /* azul al presionar */
-        }
-        )"
-        );
     ui->btnDijkstra->setStyleSheet(R"(
         QPushButton {
             font: 16px 'Courier New';
             color: white;
-            background-color: #9B1FA2;   /* morado base */
+            background-color: #4B0082;
             border-radius: 15px;
             padding: 10px 20px;
             border: none;
         }
 
         QPushButton:hover {
-            background-color: #9C27B0;  /* morado más claro al pasar mouse */
+            background-color: #7E3C8C;
         }
 
         QPushButton:pressed {
-            background-color: #2196F3;  /* azul al presionar */
+            background-color: #1B356A;
         }
         )"
         );
@@ -74,37 +55,53 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
     QString comboStyle = R"(
         QComboBox {
             font: 16px 'Courier New';
-            color: white;                              /* texto blanco */
-            background-color: #032263; /*
-            qproperty-alignment: 'AlignCenter';
+            color: black;
+            background-color: #d1d0d5;
             border-radius: 12px;
-            padding: 8px 20px 8px 12px;               /* espacio interno */
-            border: 2px solid rgba(100, 100, 150, 200); /* borde suave */
+            padding: 8px 20px 8px 12px;
             min-width: 150px;
         }
 
         QComboBox:hover {
-            background-color: rgba(155, 85, 200, 220); /* morado elegante al pasar el mouse */
-            border: 2px solid rgba(120, 70, 150, 220);
+            background-color: #EAF0FA;
         }
 
         QComboBox:pressed {
-            background-color: rgba(130, 60, 180, 220); /* morado más oscuro al presionar */
+            background-color: #DFE5F2;
         }
 
         QComboBox QAbstractItemView {
-            background-color: white; /* lista con mismo azul clarito */
-            border: 2px solid rgba(100, 100, 150, 200);
-            border-radius: 12px;
-            selection-background-color: rgba(155, 85, 200, 200); /* selección morado */
+            background-color: #E7E7E7;
+            color: #1A356A;
+            selection-background-color: #68749D;
             selection-color: white;
             outline: 0;
             padding: 5px;
         }
-        )";
+    )";
 
     ui->comboInicio->setStyleSheet(comboStyle);
     ui->comboDestino->setStyleSheet(comboStyle);
+
+    QString btnRegresar = R"(
+        QPushButton {
+            font: 14px 'Courier New';
+            color: white;
+            background-color: #1A356A;
+            border-radius: 15px;
+            padding: 10px 10px;
+            border: none;
+        }
+        QPushButton:hover {
+            background-color: #8666a6;
+            font-weight: bold;
+        }
+        QPushButton:pressed {
+            background-color: #7B1FA2;
+        }
+    )";
+
+    ui->btnRegresar->setStyleSheet(btnRegresar);
 
 
     // Hacer que el QTextEdit no sea editable
@@ -118,7 +115,7 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
             background-color: rgba(255, 255, 255, 180); /* fondo semi-transparente */
             border-radius: 15px;
             padding: 12px;
-            border: 2px solid #7B1FA2;          /* borde morado */
+            border: 2px solid #1A356A;          /* borde morado */
             selection-background-color: rgba(155, 85, 200, 150); /* selección morado suave */
             selection-color: white;
         }
@@ -128,7 +125,7 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
         )");
 
     // Cargar la imagen
-    QPixmap fondo(":/img/img/rutaab.png"); // Ruta en el .qrc
+    QPixmap fondo(":/img/img/RUTAAB.png"); // Ruta en el .qrc
 
     // Ajustar tamaño al widget
     fondo = fondo.scaled(this->size(), Qt::IgnoreAspectRatio);
@@ -143,17 +140,17 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
 
     //Nombres
     mapa.setNombreNodo(0, "Porteria");
-    mapa.setNombreNodo(1, "Entrada parqueadero");
+    mapa.setNombreNodo(1, "Parqueadero");
     mapa.setNombreNodo(2, "Capilla");
-    mapa.setNombreNodo(3, "Bloque Administrativo 1");
+    mapa.setNombreNodo(3, "Bloque Admin 1");
     mapa.setNombreNodo(4, "Auditorio");
     mapa.setNombreNodo(5, "Plazoleta");
     mapa.setNombreNodo(6, "Bloque TEC.");
-    mapa.setNombreNodo(7, "Bloque Administrativo 2");
+    mapa.setNombreNodo(7, "Bloque Admin 2");
     mapa.setNombreNodo(8, "Bloque ACA1");
     mapa.setNombreNodo(9, "Cafetería");
-    mapa.setNombreNodo(10, " Bloque ACA2");
-    mapa.setNombreNodo(11, " Zona Libre");
+    mapa.setNombreNodo(10, "Bloque ACA2");
+    mapa.setNombreNodo(11, "Zona Libre");
 
     //Conexiones todas son bidireccionales, por eso cuando ya pongo una no debo de replicarlo para la otra
 
@@ -201,12 +198,7 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
     mapa.agregarConexion(9, 10, 11); // Cafetería -> ACA2 11m
 
     // ACA2
-    mapa.agregarConexion(10, 11, 6); // ACA2 -> Zona libre 6m
-
-    mapa.agregarZona("Cafetería", "Plazoleta Central");
-    mapa.agregarZona("Auditorio", "Bloque Principal");
-    mapa.agregarZona("Centro de Idiomas", "Bloque B");
-    mapa.agregarZona("Biblioteca", "Bloque B");
+    mapa.agregarConexion(10, 11, 6); // ACA2 -> Zona libre 6mS
 
     // Llenar ComboBoxes con los nombres de los nodos
     for (int i = 0; i < mapa.getCantidadNodos(); i++) {
@@ -214,6 +206,7 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
         ui->comboInicio->addItem(nombre);
         ui->comboDestino->addItem(nombre);
     }
+
 
 }
 

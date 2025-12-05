@@ -6,27 +6,280 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QLabel" name="lblFondo">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>130</y>
-     <width>56</width>
-     <height>18</height>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>720</height>
     </rect>
    </property>
+   <property name="minimumSize">
+    <size>
+     <width>1280</width>
+     <height>720</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1280</width>
+     <height>720</height>
+    </size>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/img/img/lugarBloque.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
+  <widget class="QListWidget" name="listEspacios">
+   <property name="geometry">
+    <rect>
+     <x>337</x>
+     <y>118</y>
+     <width>331</width>
+     <height>491</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QListWidget {
+            background-color: transparent;
+            padding: 5px;
+            font: 14px 'Courier New';
+            font-weight: bold;
+            color: #FFFFFF;
+            outline: 0;
+        }</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelImagenBloque">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>116</y>
+     <width>491</width>
+     <height>491</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border: 2px solid #D1D0D5;
+border-radius: 15px;
+ </string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>160</y>
+     <width>231</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+    font: 15px 'Courier New';             /* fuente moderna */
+    border-radius: 15px;                  /* bordes redondeados */
+    padding: 20px;
+	color: rgb(0, 0, 0);
+   background-color: none;
+</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;&gt;Por favor, seleccione un bloque para visualizar su información.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widgetBotones" native="true">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>300</y>
+     <width>211</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+            font: 16px 'Courier New';
+            color: white;
+            background-color: none;
+            border-radius: 15px;
+            padding: 10px 20px;
+				border: 100px;
+</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QPushButton" name="btnTEC">
+      <property name="styleSheet">
+       <string notr="true">        QPushButton {
+            font: 15px 'Courier New';
+            color: black;
+            background-color: #F2F2F2;
+            border-radius: 8px;
+            padding: 5px 20px;
+            border: none;
+        }</string>
+      </property>
+      <property name="text">
+       <string>Tecnologico</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnACA1">
+      <property name="styleSheet">
+       <string notr="true">        QPushButton {
+            font: 15px 'Courier New';
+            color: black;
+            background-color: #F2F2F2;
+            border-radius: 8px;
+            padding: 5px 20px;
+            border: none;
+        }</string>
+      </property>
+      <property name="text">
+       <string>Academico 01</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnACA2">
+      <property name="styleSheet">
+       <string notr="true">        QPushButton {
+            font: 15px 'Courier New';
+            color: black;
+            background-color: #F2F2F2;
+            border-radius: 8px;
+            padding: 5px 20px;
+            border: none;
+        }</string>
+      </property>
+      <property name="text">
+       <string>Academico 02</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnAdmin1">
+      <property name="styleSheet">
+       <string notr="true">        QPushButton {
+            font: 15px 'Courier New';
+            color: black;
+            background-color: #F2F2F2;
+            border-radius: 8px;
+            padding: 5px 20px;
+            border: none;
+        }</string>
+      </property>
+      <property name="text">
+       <string>Administrativo 01</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnAdmin2">
+      <property name="styleSheet">
+       <string notr="true">        QPushButton {
+            font: 15px 'Courier New';
+            color: black;
+            background-color: #F2F2F2;
+            border-radius: 8px;
+            padding: 5px 20px;
+            border: none;
+        }</string>
+      </property>
+      <property name="text">
+       <string>Administrativo 02</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnAdmin3">
+      <property name="styleSheet">
+       <string notr="true">        QPushButton {
+            font: 15px 'Courier New';
+            color: black;
+            background-color: #F2F2F2;
+            border-radius: 8px;
+            padding: 5px 20px;
+            border: none;
+        }</string>
+      </property>
+      <property name="text">
+       <string>Administrativo 03</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnRegresar">
+      <property name="styleSheet">
+       <string notr="true">        QPushButton {
+            font: 15px 'Courier New';
+            color: white;
+            background-color: #1A356A;
+            border-radius: 15px;
+            padding: 10px 10px;
+            border: none;
+        }</string>
+      </property>
+      <property name="text">
+       <string>&lt;- Regresar</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
