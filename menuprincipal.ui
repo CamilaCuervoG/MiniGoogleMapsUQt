@@ -104,14 +104,12 @@
        <item>
         <widget class="QComboBox" name="comboInicio">
          <property name="styleSheet">
-          <string notr="true">QComboBox {
+          <string notr="true"> QComboBox {
             font: 16px 'Courier New';
-            color: white;                              /* texto blanco */
-            background-color: #032263; /*
-            qproperty-alignment: 'AlignCenter';
+            color: black;
+            background-color: #E7E7E7;
             border-radius: 12px;
-            padding: 8px 20px 8px 12px;               /* espacio interno */
-            border: 2px solid rgba(100, 100, 150, 200); /* borde suave */
+            padding: 8px 20px 8px 12px;
             min-width: 150px;
         }</string>
          </property>
@@ -120,14 +118,12 @@
        <item>
         <widget class="QComboBox" name="comboDestino">
          <property name="styleSheet">
-          <string notr="true">QComboBox {
+          <string notr="true"> QComboBox {
             font: 16px 'Courier New';
-            color: white;                              /* texto blanco */
-            background-color: #032263; /*
-            qproperty-alignment: 'AlignCenter';
+            color: black;
+            background-color: #E7E7E7;
             border-radius: 12px;
-            padding: 8px 20px 8px 12px;               /* espacio interno */
-            border: 2px solid rgba(100, 100, 150, 200); /* borde suave */
+            padding: 8px 20px 8px 12px;
             min-width: 150px;
         }</string>
          </property>
@@ -139,13 +135,15 @@
       <widget class="QTextEdit" name="textResultado">
        <property name="styleSheet">
         <string notr="true">QTextEdit {
-    font: 16px 'Courier New';
-    color: #003366;              /* texto azul IUSH */
-    background-color: rgba(255, 255, 255, 200); /* fondo semi-transparente */
-    border-radius: 15px;
-    padding: 10px;
-    border: 2px solid #7B1FA2;  /* borde morado */
-}</string>
+            font: 16px 'Courier New';
+            color: #003366;                      /* texto azul IUSH */
+            background-color: rgba(255, 255, 255, 180); /* fondo semi-transparente */
+            border-radius: 15px;
+            padding: 12px;
+            border: 2px solid #1A356A;          /* borde morado */
+            selection-background-color: rgba(155, 85, 200, 150); /* selección morado suave */
+            selection-color: white;
+        }</string>
        </property>
       </widget>
      </item>
@@ -157,7 +155,7 @@
           <string notr="true">QPushButton {
             font: 16px 'Courier New';
             color: white;
-            background-color: #9B1FA2;   /* morado base */
+            background-color: #4B0082;
             border-radius: 15px;
             padding: 10px 20px;
             border: none;
@@ -168,35 +166,26 @@
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QPushButton" name="btnDFS">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-            font: 16px 'Courier New';
-            color: white;
-            background-color: #7B1FA2;   /* morado base */
-            border-radius: 15px;
-            padding: 10px 20px;
-            border: none;
-        }</string>
-         </property>
-         <property name="text">
-          <string>Recorrido Mapa</string>
-         </property>
-        </widget>
-       </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btnRegresar">
        <property name="styleSheet">
-        <string notr="true">font: 12px 'Courier New';
-        color: white;
-        background-color: #003366;  
-        border-radius: 15px;
-        padding: 8px 8px;
-        border: none;
-       </string>
+        <string notr="true">QPushButton {
+            font: 14px 'Courier New';
+            color: white;
+            background-color: #1A356A;
+            border-radius: 15px;
+            padding: 10px 10px;
+            border: none;
+        }</string>
        </property>
        <property name="text">
         <string>Regresar al menú</string>
@@ -236,10 +225,34 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QLabel" name="labelImagenBloque">
+   <property name="geometry">
+    <rect>
+     <x>638</x>
+     <y>80</y>
+     <width>561</width>
+     <height>561</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border: 2px solid #D1D0D5;
+border-radius: 15px;
+ </string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/img/img/CAMPUSCONTEXT.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>groupBox</zorder>
-  <zorder>label_3</zorder>
-  <zorder>label_2</zorder>
+  <zorder>labelImagenBloque</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

@@ -41,16 +41,16 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "MainWindow",
         "abrirRutaAB",
         "",
-        "abrirBuscar",
-        "abrirLugarBloque"
+        "abrirLugarBloque",
+        "abrirBuscarLugar"
     };
 
     QtMocHelpers::UintData qt_methods {
         // Slot 'abrirRutaAB'
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'abrirBuscar'
-        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'abrirLugarBloque'
+        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'abrirBuscarLugar'
         QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
@@ -76,8 +76,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->abrirRutaAB(); break;
-        case 1: _t->abrirBuscar(); break;
-        case 2: _t->abrirLugarBloque(); break;
+        case 1: _t->abrirLugarBloque(); break;
+        case 2: _t->abrirBuscarLugar(); break;
         default: ;
         }
     }
