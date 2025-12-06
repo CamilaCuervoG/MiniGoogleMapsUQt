@@ -20,7 +20,6 @@ SOURCES += \
 HEADERS += \
     Bloque.h \
     Grafo.h \
-    Historial.h \
     InfoLugarDialog.h \
     ListaSimple.h \
     buscarlugar.h \

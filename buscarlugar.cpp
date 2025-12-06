@@ -50,6 +50,7 @@ void BuscarLugar::configurarEstilos() {
         QLineEdit {
             font: 16px 'Courier New';
             padding: 8px 12px;
+            color: black;
             border-radius: 15px;
             border: 2px solid #7e3c8c;
             background-color: rgba(255,255,255,0.9);
@@ -64,21 +65,34 @@ void BuscarLugar::configurarEstilos() {
         QListWidget {
             background-color: rgba(245,245,245,0.85);
             border-radius: 15px;
+            color: black;
             padding: 5px;
             font: 14px 'Courier New';
+            outline: 0; /* quita borde del widget */
         }
+
         QListWidget::item {
             padding: 8px;
             border-radius: 10px;
+            border: none;
+            outline: none; /* sin borde de focus */
         }
-        QListWidget::item:hover {
-            background-color: #7e3c8c;
-            color: white;
-        }
+
         QListWidget::item:selected {
             background-color: #4B0082;
             color: white;
             font-weight: bold;
+        }
+
+        QListWidget::item:hover {
+            background-color: #7e3c8c;
+            color: white;
+        }
+
+        /* evita el rectángulo de enfoque pero NO desactiva el foco real */
+        QListWidget::item:focus {
+            outline: none;
+            border: none;
         }
     )");
 
@@ -191,16 +205,23 @@ void BuscarLugar::realizarBusqueda() {
     lugares.insertar({"Biblioteca", "ACA2", "2do piso", "N/A", "Préstamo de libros y consulta académica."});
     lugares.insertar({"Salon de Videojuegos Inder", "ACA2", "201", "N/A", "Espacio recreativo con videojuegos para estudiantes."});
 
+    // BÚSQUEDA
+
     // Filtrar y mostrar resultados
     NodoSimple<Lugar>* actual = lugares.getCabeza();
+
     while(actual != nullptr) {
         const Lugar &l = actual->dato;
+
         if(l.nombre.contains(busqueda, Qt::CaseInsensitive)) {
+
             QListWidgetItem *item = new QListWidgetItem(l.nombre);
+
             item->setData(Qt::UserRole, l.bloque);
             item->setData(Qt::UserRole + 1, l.piso);
             item->setData(Qt::UserRole + 2, l.correo);
             item->setData(Qt::UserRole + 3, l.descripcion);
+
             ui->listResultados->addItem(item);
         }
         actual = actual->siguiente;
