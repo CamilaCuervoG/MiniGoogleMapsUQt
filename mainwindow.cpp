@@ -10,33 +10,39 @@
 #include "lugarbloque.h"
 #include "Mapa.h"
 
+// Constructor de la ventana principal
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
     ui(new Ui::MainWindow)
-    , mapa(12)
+    , mapa(12)  // Inicializa el mapa con 12 nodos
 {
-    ui->setupUi(this);
+    ui->setupUi(this); // Carga el diseño del UI
 
+    // Tamaño fijo de la ventana principal
     setFixedSize(1280, 720);
-    // Centrar ventana
+
+    // Centrar la ventana en pantalla
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screenGeometry = screen->geometry();
     int x = (screenGeometry.width() - width()) / 2;
     int y = (screenGeometry.height() - height()) / 2;
     move(x, y);
 
+    // Configuración visual de la ventana
     setWindowFlags(Qt::Dialog | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
     setWindowTitle("Menu Principal");
 
+    // Conexión de botones a funciones
     connect(ui->btnRutaAB, &QPushButton::clicked, this, &MainWindow::abrirRutaAB);
     connect(ui->btnBuscar, &QPushButton::clicked, this, &MainWindow::abrirBuscarLugar);
     connect(ui->btnLugarBloque, &QPushButton::clicked, this, &MainWindow::abrirLugarBloque);
 
+    // Estilo del botón 1: Ruta AB
     ui->btnRutaAB->setStyleSheet(
         "QPushButton {"
         "font: 16px 'Courier New';"
         "color: white;"
-        "background-color: #003366;"  // azul IUSH
+        "background-color: #003366;"  // Azul institucional
         "border-radius: 15px;"
         "padding: 10px 20px;"
         "border: none;"
@@ -49,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
         "}"
         );
 
-    // Botón 2: Calcular Ruta
+    // Estilo del botón 2: Buscar lugar
     ui->btnBuscar->setStyleSheet(
         "QPushButton {"
         "font: 16px 'Courier New';"
@@ -67,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent)
         "}"
         );
 
-    // Botón 3: Salir
+    // Estilo del botón 3: Lugar por bloques
     ui->btnLugarBloque->setStyleSheet(
         "QPushButton {"
         "font: 16px 'Courier New';"
@@ -87,55 +93,47 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
+// Destructor
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+// Abrir ventana "Ruta AB" (MenuPrincipal)
 void MainWindow::abrirRutaAB() {
-    // Crear la nueva ventana
     MenuPrincipal *menu = new MenuPrincipal(this);
 
-    this->hide(); // si quieres ocultar MainWindow
+    this->hide(); // Oculta MainWindow
 
-    // Mostrar la nueva ventana
-    menu->show();
+    menu->show(); // Muestra la ventana de rutas
 
-    // Ocultar la ventana actual
-    this->hide();
-
-    // Opcional: cuando se cierre la nueva ventana, cerrar la app completa
+    // Cuando MenuPrincipal se destruya, cerrar la principal
     connect(menu, &QWidget::destroyed, this, &QWidget::close);
 }
 
+// Abrir ventana para seleccionar Lugar por Bloque
 void MainWindow::abrirLugarBloque() {
-    // Crear la nueva ventana
     LugarBloque *lugar = new LugarBloque(this);
 
-    // Mostrar la nueva ventana
-    lugar->show();
+    lugar->show(); // Mostrar la ventana del bloque
+    this->hide(); // Ocultar MainWindow
 
-    // Ocultar la ventana actual
-    this->hide();
-
-    // Opcional: cuando se cierre la nueva ventana, cerrar la app completa
+    // Cuando LugarBloque se cierre, cerrar MainWindow
     connect(lugar, &QWidget::destroyed, this, &QWidget::close);
 }
 
+// Abrir buscador de lugares
 void MainWindow::abrirBuscarLugar() {
     BuscarLugar *buscar = new BuscarLugar();
 
-    // Ocultar la ventana principal
-    this->hide();
+    this->hide(); // Oculta la ventana principal
 
-    // Destruir BuscarLugar al cerrarse automáticamente
-    buscar->setAttribute(Qt::WA_DeleteOnClose);
+    buscar->setAttribute(Qt::WA_DeleteOnClose); // Se borrará solo cuando la cierren
 
-    // Cuando se cierre BuscarLugar, mostrar MainWindow de nuevo
+    // Al cerrar, volver a mostrar MainWindow
     connect(buscar, &QWidget::destroyed, this, [this]() {
         this->show();
     });
 
-    // Mostrar BuscarLugar
-    buscar->show();
+    buscar->show(); // Mostrar ventana de búsqueda
 }

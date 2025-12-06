@@ -11,32 +11,35 @@
 LugarBloque::LugarBloque(MainWindow *main, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::LugarBloque)
-    , mapa(12)
-    , mainWindow(main)
+    , mapa(12)         // Se crea un mapa independiente con 12 nodos
+    , mainWindow(main) // Se guarda la referencia al MainWindow original
 {
     ui->setupUi(this);
 
-    setFixedSize(1280, 720);
-    // Centrar ventana
+    setFixedSize(1280, 720); // Tamaño fijo de la ventana
+
+    // --- CENTRAR LA VENTANA ---
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screenGeometry = screen->geometry();
     int x = (screenGeometry.width() - width()) / 2;
     int y = (screenGeometry.height() - height()) / 2;
     move(x, y);
 
-    // Fondo
+    // --- FONDO DE PANTALLA ---
     QPixmap fondo(":/img/img/lugarBloque.png");
     fondo = fondo.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Window, fondo);
     this->setPalette(palette);
 
+    // Ventana tipo diálogo con botón de cerrar
     setWindowFlags(Qt::Dialog | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
     setWindowTitle("Bloques y Espacios");
 
-    //Conectar botón regresar
+    // --- EVENTO BOTÓN REGRESAR ---
     connect(ui->btnRegresar, &QPushButton::clicked, this, &LugarBloque::regresarMenuPrincipal);
 
+    // --- ESTILO DEL BOTÓN REGRESAR ---
     QString btnRegresar = R"(
         QPushButton {
             font: 15px 'Courier New';
@@ -55,9 +58,9 @@ LugarBloque::LugarBloque(MainWindow *main, QWidget *parent)
             background-color: #7B1FA2;
         }
     )";
-
     ui->btnRegresar->setStyleSheet(btnRegresar);
 
+    // --- Hacer botoncitos seleccionables ---
     ui->btnAdmin1->setCheckable(true);
     ui->btnAdmin2->setCheckable(true);
     ui->btnAdmin3->setCheckable(true);
@@ -65,10 +68,9 @@ LugarBloque::LugarBloque(MainWindow *main, QWidget *parent)
     ui->btnACA1->setCheckable(true);
     ui->btnACA2->setCheckable(true);
 
+    // --- Grupo para que solo uno esté seleccionado ---
     QButtonGroup *menuGroup = new QButtonGroup(this);
-
     menuGroup->setExclusive(true);
-
     menuGroup->addButton(ui->btnAdmin1);
     menuGroup->addButton(ui->btnAdmin2);
     menuGroup->addButton(ui->btnAdmin3);
@@ -76,7 +78,7 @@ LugarBloque::LugarBloque(MainWindow *main, QWidget *parent)
     menuGroup->addButton(ui->btnACA1);
     menuGroup->addButton(ui->btnACA2);
 
-    // Estilos modernos para botones
+    // --- ESTILO DE LOS BOTONES DEL MENÚ ---
     QString btnStyle = R"(
     QPushButton {
         font: 15px 'Courier New';
@@ -102,13 +104,16 @@ LugarBloque::LugarBloque(MainWindow *main, QWidget *parent)
         background-color: #4B0082;
     }
 )";
-
     ui->btnAdmin1->setStyleSheet(btnStyle);
     ui->btnAdmin2->setStyleSheet(btnStyle);
     ui->btnAdmin3->setStyleSheet(btnStyle);
     ui->btnTEC->setStyleSheet(btnStyle);
     ui->btnACA1->setStyleSheet(btnStyle);
     ui->btnACA2->setStyleSheet(btnStyle);
+
+    // --- CREACIÓN DE BLOQUES Y SUS ESPACIOS ---
+    // (cada bloque se crea y se le agregan sus espacios)
+    // luego se agregan al mapa interno
 
     // 1
     Bloque admin1("ADMIN1");
@@ -191,7 +196,7 @@ LugarBloque::LugarBloque(MainWindow *main, QWidget *parent)
     aca2.agregarEspacio("Biblioteca - 2do piso");
     aca2.agregarEspacio("Salon de Videojuegos Inder - 201");
 
-    // Agregar bloques al mapa independiente de LugarBloque
+    // --- Se agregan los bloques al mapa ---
     mapa.agregarBloque(admin1);
     mapa.agregarBloque(admin2);
     mapa.agregarBloque(admin3);
@@ -199,45 +204,39 @@ LugarBloque::LugarBloque(MainWindow *main, QWidget *parent)
     mapa.agregarBloque(aca1);
     mapa.agregarBloque(aca2);
 
+    // --- Eventos de los botones: mostrar cada bloque ---
     connect(ui->btnAdmin1, &QPushButton::clicked, this, [=]() {
         mostrarBloque(0); // índice 0 = bloqueAdmin1 en mapa
     });
-
     connect(ui->btnAdmin2, &QPushButton::clicked, this, [=]() {
         mostrarBloque(1); // índice 1 = bloqueAdmin2
     });
-
     connect(ui->btnAdmin3, &QPushButton::clicked, this, [=]() {
         mostrarBloque(2); // índice 2 = bloqueAdmin3
     });
-
     connect(ui->btnTEC, &QPushButton::clicked, this, [=]() {
         mostrarBloque(3); // bloqueTEC
     });
-
     connect(ui->btnACA1, &QPushButton::clicked, this, [=]() {
         mostrarBloque(4); // bloqueACA1
     });
-
     connect(ui->btnACA2, &QPushButton::clicked, this, [=]() {
         mostrarBloque(5); // bloqueACA2
     });
 
-
-    // Mostrar espacios del primer bloque
+    // --- Cargar automáticamente el primer bloque ---
     if (!mapa.getBloques().empty()) {
         cargarEspacios(0);
     }
 
-    // Estilo para QLabel de imagen
+    // Estilo de la imagen del bloque (actualmente no tiene nada personalizado)
     ui->labelImagenBloque->setStyleSheet(R"(
         QLabel {
 
         }
     )");
 
-    // Estilo para listWidget
-
+    // --- ESTILO DE LA LISTA DE ESPACIOS ---
     ui->listEspacios->setStyleSheet(R"(
         QListWidget {
             background-color: transparent;
@@ -269,8 +268,10 @@ LugarBloque::LugarBloque(MainWindow *main, QWidget *parent)
         }
         )");
 
-    // Tamaño de la imagen
+    // --- Tamaño de imagen del bloque ---
     ui->labelImagenBloque->setScaledContents(true);
+
+    // Imagen inicial por defecto (campus general)
     if(!mapa.getBloques().empty()) {
         QPixmap pix(":/img/img/campus.png"); // Imagen inicial
         ui->labelImagenBloque->setPixmap(pix.scaled(ui->labelImagenBloque->size(), Qt::KeepAspectRatio));
@@ -283,6 +284,7 @@ LugarBloque::~LugarBloque()
     delete ui;
 }
 
+// --- Cargar espacios de un bloque y su imagen ---
 void LugarBloque::cargarEspacios(int index)
 {
     if (index < 0 || index >= mapa.getBloques().size())
@@ -290,7 +292,7 @@ void LugarBloque::cargarEspacios(int index)
 
     const auto &bloque = mapa.getBloques()[index];
 
-    // Actualizar imagen del bloque
+    // Cargar imagen del bloque
         QString nombreImg = QString(":/img/img/")
         + QString::fromStdString(bloque.getNombre())
         + ".png";
@@ -299,13 +301,14 @@ void LugarBloque::cargarEspacios(int index)
     if(!pix.isNull())
         ui->labelImagenBloque->setPixmap(pix.scaled(ui->labelImagenBloque->size(), Qt::KeepAspectRatio));
 
-    // Llenar lista de espacios
+    // Llenar la lista
     ui->listEspacios->clear();
     for (const auto &esp : bloque.getEspacios()) {
         ui->listEspacios->addItem(QString::fromStdString(esp));
     }
 }
 
+// --- Regresar al menú principal ---
 void LugarBloque::regresarMenuPrincipal() {
     if(mainWindow) {
         mainWindow->show(); // mostramos el MainWindow original
@@ -313,6 +316,7 @@ void LugarBloque::regresarMenuPrincipal() {
     this->close(); // cerramos LugarBloque actual
 }
 
+// --- Mostrar un bloque al hacer clic ---
 void LugarBloque::mostrarBloque(int index) {
     if (index < 0 || index >= mapa.getBloques().size())
         return;

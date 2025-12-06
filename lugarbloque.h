@@ -1,5 +1,6 @@
 #ifndef LUGARBLOQUE_H
 #define LUGARBLOQUE_H
+
 #include "mapa.h"
 #include "mainwindow.h"
 #include <QListWidget>
@@ -22,26 +23,34 @@ class LugarBloque : public QWidget
     Q_OBJECT
 
 public:
+    // Constructor: recibo el MainWindow para poder regresar a él
     explicit LugarBloque(MainWindow *main, QWidget *parent = nullptr);
+
+    // Destructor: libero la interfaz
     ~LugarBloque();
 
 private slots:
+    // Carga los espacios del bloque seleccionado
     void cargarEspacios(int index);
+
+    // Muestra la información del bloque (incluye la imagen)
     void mostrarBloque(int index);
+
+    // Regresa a la ventana principal
     void regresarMenuPrincipal();
 
 private:
-    Ui::LugarBloque *ui;
-    Mapa mapa;
+    Ui::LugarBloque *ui;    // Interfaz generada por Qt Designer
+    Mapa mapa;              // Mapa que contiene los bloques y nodos del campus
     MainWindow *mainWindow; // puntero al MainWindow original
 
-    // Widgets
-    QVBoxLayout *layoutBotones;
-    QLabel *labelImagenBloque;
-    QListWidget *listEspacios;
+    // Widgets de la interfaz
+    QVBoxLayout *layoutBotones; // Layout donde van los botones de bloques
+    QLabel *labelImagenBloque;  // Etiqueta donde muestro la imagen del bloque
+    QListWidget *listEspacios;  // Lista con los espacios del bloque
 
-    QWidget *widgetBotones;
-    QVBoxLayout *layoutPrincipal;
+    QWidget *widgetBotones;       // Contenedor de los botones
+    QVBoxLayout *layoutPrincipal; // Layout general del widget
 
 };
 

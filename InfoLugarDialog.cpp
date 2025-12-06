@@ -7,14 +7,17 @@ InfoLugarDialog::InfoLugarDialog(QWidget *parent) :
     ui(new Ui::InfoLugarDialog)
 {
     ui->setupUi(this);
+
+    // Hago que el campo de descripción no sea editable
     ui->txtDescripcion->setReadOnly(true);
+
+    // Conecto el botón "Cerrar" para que simplemente cierre el diálogo
     connect(ui->btnCerrar, &QPushButton::clicked, this, &QDialog::accept);
 
-    // Estilos modernos para dialog
+    // Estilos visuales del diálogo (fondo, tipografías, botones, etc.)
     setStyleSheet(R"(
         QDialog {
             background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #ffffff, stop:1 #f0f0f0);
-            border-radius: 20px;
             border: 2px solid #7e3c8c;
         }
 
@@ -51,17 +54,17 @@ InfoLugarDialog::InfoLugarDialog(QWidget *parent) :
         }
     )");
 
-    // Sombra suave alrededor del dialog
+    // Efecto de sombra para darle profundidad al cuadro de información
     QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(this);
-    shadow->setBlurRadius(25);
-    shadow->setOffset(0, 5);
-    shadow->setColor(QColor(0, 0, 0, 80));
+    shadow->setBlurRadius(25);             // Nivel de difuminado
+    shadow->setOffset(0, 5);               // Desplazamiento vertical
+    shadow->setColor(QColor(0, 0, 0, 80)); // Color negro semitransparente
     this->setGraphicsEffect(shadow);
 }
 
 InfoLugarDialog::~InfoLugarDialog()
 {
-    delete ui;
+    delete ui; // Libero la interfaz generada por Qt Designer
 }
 
 void InfoLugarDialog::setInfo(const QString &nombre,
@@ -70,6 +73,7 @@ void InfoLugarDialog::setInfo(const QString &nombre,
                               const QString &correo,
                               const QString &descripcion)
 {
+    // Cargo toda la información recibida dentro del diálogo
     ui->lblNombre->setText(nombre);
     ui->lblBloque->setText("Bloque: " + bloque);
     ui->lblPiso->setText("Piso: " + piso);
