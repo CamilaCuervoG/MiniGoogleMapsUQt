@@ -5,17 +5,15 @@
 #include <string>
 #include <algorithm> // Para std::reverse
 
-// ================================
 // Clase Grafo para representar un mapa de nodos y conexiones
-// ================================
 class Grafo {
 private:
     int numNodos; // Cantidad de nodos en el grafo
 
-    // Nombres de los lugares correspondientes a cada nodo
+    // Nombre asociado a cada nodo
     std::vector<std::string> nombres;
 
-    // Lista de adyacencia: cada nodo tiene una lista de pares (vecino, distancia en metros)
+    // Lista de adyacencia: cada nodo almacena (vecino, distancia)
     std::vector<std::list<std::pair<int, int>>> adyacencia;
 
 public:
@@ -24,11 +22,9 @@ public:
     explicit Grafo(int n)
         : numNodos(n), nombres(n), adyacencia(n) {}
 
-    // ================================
     // Configuración de nodos y conexiones
-    // ================================
 
-    // Asignar nombre a un nodo específico
+    // Asigno un nombre a un nodo específico
     void setNombre(int nodo, const std::string& nombre) {
         if (nodo < 0 || nodo >= numNodos) {
             std::cout << "Error: nodo fuera de rango.\n";
@@ -37,7 +33,7 @@ public:
         nombres[nodo] = nombre;
     }
 
-    // Agregar conexión bidireccional entre nodos con distancia
+    // Agrego una conexión en ambos sentidos (grafo no dirigido)
     void agregarConexion(int origen, int destino, int distancia) {
         if (origen < 0 || origen >= numNodos ||
             destino < 0 || destino >= numNodos) {
@@ -49,9 +45,7 @@ public:
         adyacencia[destino].push_back({ origen, distancia });
     }
 
-    // ================================
     // Mostrar grafo completo en consola
-    // ================================
     void mostrarGrafo() const {
         std::cout << "\n===== MAPA DEL CAMPUS =====\n";
         for (int i = 0; i < numNodos; i++) {
@@ -66,11 +60,9 @@ public:
         }
     }
 
-    // ================================
     // Accesores
-    // ================================
     const std::list<std::pair<int, int>>& getVecinos(int nodo) const {
-        return adyacencia[nodo]; // Retorna vecinos y distancias de un nodo
+        return adyacencia[nodo]; // Devuelvo sus vecinos con distancias
     }
 
     std::string getNombre(int nodo) const {
@@ -81,13 +73,12 @@ public:
         return numNodos; // Retorna cantidad de nodos
     }
 
-    // ================================
     // DFS (Recorrido en profundidad)
-    // ================================
     void dfsUtil(int nodo, std::vector<bool>& visitado, std::ostream& os) const {
         visitado[nodo] = true;
         os << getNombre(nodo) << " -> ";
 
+        // Recorro los vecinos del nodo actual
         for (const auto& vecino : adyacencia[nodo]) {
             if (!visitado[vecino.first]) {
                 dfsUtil(vecino.first, visitado, os); // Llamada recursiva
@@ -95,7 +86,7 @@ public:
         }
     }
 
-    // Inicia DFS desde un nodo dado y escribe recorrido
+    // Inicio del DFS desde un nodo específico
     void DFS(int inicio, std::ostream& os) const {
         if (inicio < 0 || inicio >= numNodos) {
             os << "Nodo inválido.\n";
@@ -108,9 +99,7 @@ public:
         os << "\n";
     }
 
-    // ================================
     // DIJKSTRA (Ruta más corta)
-    // ================================
     std::vector<int> dijkstra(int origen, int destino) const {
         if (origen < 0 || origen >= numNodos ||
             destino < 0 || destino >= numNodos) {
@@ -120,27 +109,27 @@ public:
 
         const int INF = 1e9;
 
-        std::vector<int> dist(numNodos, INF);    // Distancias iniciales
+        std::vector<int> dist(numNodos, INF);    // Distancias acumuladas
         std::vector<int> padre(numNodos, -1);    // Para reconstruir ruta
         std::vector<bool> visitado(numNodos, false);
 
         dist[origen] = 0;
 
-        // Algoritmo principal
+        // Ciclo principal del algoritmo
         for (int i = 0; i < numNodos; i++) {
             int u = -1;
 
-            // Seleccionar nodo no visitado con distancia mínima
+            // Selecciono el nodo no visitado con menor distancia
             for (int j = 0; j < numNodos; j++) {
                 if (!visitado[j] && (u == -1 || dist[j] < dist[u])) {
                     u = j;
                 }
             }
 
-            if (dist[u] == INF) break; // Nodo inaccesible
+            if (dist[u] == INF) break; // Si es inaccesible, termino
             visitado[u] = true;
 
-            // Actualizar distancias a vecinos
+            // Actualiza distancias a vecinos
             for (const auto& vecino : adyacencia[u]) {
                 int v = vecino.first;
                 int peso = vecino.second;
@@ -157,11 +146,11 @@ public:
         for (int actual = destino; actual != -1; actual = padre[actual]) {
             ruta.push_back(actual);
         }
-        std::reverse(ruta.begin(), ruta.end());
+        std::reverse(ruta.begin(), ruta.end());// La dejo en orden correcto
         return ruta;
     }
 
-    // Mostrar ruta encontrada en consola
+    // Mostrar ruta encontrada en pantalla
     void mostrarRuta(const std::vector<int>& ruta, std::ostream& os) const {
         if (ruta.empty()) {
             os << "No existe una ruta.\n";

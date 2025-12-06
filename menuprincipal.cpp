@@ -10,7 +10,7 @@
 #include <QScreen>
 #include <QGuiApplication>
 
-
+//CONSTRUCTOR: CONFIGURACIÓN INICIAL DE LA VENTANA
 MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MenuPrincipal)
@@ -19,19 +19,24 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
 {
     ui->setupUi(this);
 
+    // Tamaño fijo
     setFixedSize(1280, 720);
-    // Centrar ventana
+
+    // Centrar ventana en pantalla
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screenGeometry = screen->geometry();
     int x = (screenGeometry.width() - width()) / 2;
     int y = (screenGeometry.height() - height()) / 2;
     move(x, y);
 
+    // Personalización de ventana
     setWindowFlags(Qt::Dialog | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
     setWindowTitle("Consultar ruta");
 
+    // Acción de regresar
     connect(ui->btnRegresar, &QPushButton::clicked, this, &MenuPrincipal::regresarMenuPrincipal);
 
+    //ESTILOS DE BOTONES
     ui->btnDijkstra->setStyleSheet(R"(
         QPushButton {
             font: 16px 'Courier New';
@@ -52,6 +57,7 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
         )"
         );
 
+    // Estilo común para los ComboBox
     QString comboStyle = R"(
         QComboBox {
             font: 16px 'Courier New';
@@ -83,7 +89,8 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
     ui->comboInicio->setStyleSheet(comboStyle);
     ui->comboDestino->setStyleSheet(comboStyle);
 
-    QString btnRegresar = R"(
+    // Botón regresar
+    ui->btnRegresar->setStyleSheet(R"(
         QPushButton {
             font: 14px 'Courier New';
             color: white;
@@ -99,15 +106,10 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
         QPushButton:pressed {
             background-color: #7B1FA2;
         }
-    )";
+    )");
 
-    ui->btnRegresar->setStyleSheet(btnRegresar);
-
-
-    // Hacer que el QTextEdit no sea editable
+    //ESTILO DEL QTextEdit RESULTADOS
     ui->textResultado->setReadOnly(true);
-
-    // Estilo moderno y elegante
     ui->textResultado->setStyleSheet(R"(
         QTextEdit {
             font: 16px 'Courier New';
@@ -124,21 +126,17 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
         }
         )");
 
-    // Cargar la imagen
-    QPixmap fondo(":/img/img/RUTAAB.png"); // Ruta en el .qrc
-
-    // Ajustar tamaño al widget
+    //CARGAR IMAGEN DE FONDO
+    QPixmap fondo(":/img/img/RUTAAB.png");
     fondo = fondo.scaled(this->size(), Qt::IgnoreAspectRatio);
 
-    // Aplicar al fondo con QPalette
     QPalette palette;
     palette.setBrush(QPalette::Window, fondo);
     this->setPalette(palette);
 
-    // Opcional: evitar que se pueda cambiar tamaño si quieres
     this->setFixedSize(this->size());
 
-    //Nombres
+    //NOMBRES DE LOS NODOS
     mapa.setNombreNodo(0, "Porteria");
     mapa.setNombreNodo(1, "Parqueadero");
     mapa.setNombreNodo(2, "Capilla");
@@ -152,7 +150,7 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
     mapa.setNombreNodo(10, "Bloque ACA2");
     mapa.setNombreNodo(11, "Zona Libre");
 
-    //Conexiones todas son bidireccionales, por eso cuando ya pongo una no debo de replicarlo para la otra
+    // CONEXIONES DEL MAPA
 
     // Porteria
     mapa.agregarConexion(0, 1, 5);   // Porteria -> Entrada parqueadero 5m
@@ -200,21 +198,21 @@ MenuPrincipal::MenuPrincipal(MainWindow *main, QWidget *parent)
     // ACA2
     mapa.agregarConexion(10, 11, 6); // ACA2 -> Zona libre 6mS
 
-    // Llenar ComboBoxes con los nombres de los nodos
+    // LLENAR COMBOS CON NOMBRES (Inicio / Destino)
     for (int i = 0; i < mapa.getCantidadNodos(); i++) {
         QString nombre = QString::fromStdString(mapa.getNombreNodo(i));
         ui->comboInicio->addItem(nombre);
         ui->comboDestino->addItem(nombre);
     }
-
-
 }
 
+// Destructor
 MenuPrincipal::~MenuPrincipal()
 {
     delete ui;
 }
 
+// BOTÓN DFS: RECORRIDO PROFUNDO
 void MenuPrincipal::on_btnDFS_clicked() {
     int inicio = ui->comboInicio->currentIndex();
     std::ostringstream oss;
@@ -222,6 +220,7 @@ void MenuPrincipal::on_btnDFS_clicked() {
     ui->textResultado->setText(QString::fromStdString(oss.str()));
 }
 
+// BOTÓN DIJKSTRA: RUTA MÁS CORTA
 void MenuPrincipal::on_btnDijkstra_clicked() {
     int origen = ui->comboInicio->currentIndex();
     int destino = ui->comboDestino->currentIndex();
@@ -232,6 +231,7 @@ void MenuPrincipal::on_btnDijkstra_clicked() {
     ui->textResultado->setText(QString::fromStdString(oss.str()));
 }
 
+// REGRESAR AL MENÚ PRINCIPAL
 void MenuPrincipal::regresarMenuPrincipal() {
     if(mainWindow) {
         mainWindow->show(); // mostramos el MainWindow original
